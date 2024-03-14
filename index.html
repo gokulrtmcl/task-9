@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Disappearing Effect</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #imageContainer {
+      position: absolute;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+<body>
+
+<div id="imageContainer">
+  <img id="displayedImage" src="https://snacking.store/wp-content/uploads/2024/03/snacking-kerala-chips-home-made-snacks-2048x1365.jpg" alt="Displayed Image">
+</div>
+
+<script>
+  const imageContainer = document.getElementById('imageContainer');
+  const displayedImage = document.getElementById('displayedImage');
+
+  // Function to handle mouseover event
+  function handleMouseOver() {
+    imageContainer.style.opacity = 0; // Set opacity to 0 to make the image disappear
+  }
+
+  // Function to handle mouseout event
+  function handleMouseOut() {
+    imageContainer.style.opacity = 1; // Set opacity back to 1 to make the image reappear
+  }
+
+  // Add event listeners
+  displayedImage.addEventListener('mouseover', handleMouseOver);
+  displayedImage.addEventListener('mouseout', handleMouseOut);
+
+  // Additional functionality to make the image reappear when mouse moves to other areas
+  document.addEventListener('mousemove', (event) => {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    // Check if the mouse is outside the image container
+    if (
+      mouseX < imageContainer.offsetLeft ||
+      mouseX > (imageContainer.offsetLeft + imageContainer.offsetWidth) ||
+      mouseY < imageContainer.offsetTop ||
+      mouseY > (imageContainer.offsetTop + imageContainer.offsetHeight)
+    ) {
+      imageContainer.style.opacity = 1; // Set opacity back to 1 to make the image reappear
+    }
+  });
+</script>
+
+</body>
+</html>
